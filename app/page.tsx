@@ -4,15 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [joined, setJoined] = useState(false);
+  // const [email, ] = useState('');
+  // const [, setJoined] = useState(false);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!email.trim()) return;
-    // TODO: wire this up to your real mailing list (Mailchimp, Brevo, a Google Sheet, etc.)
-    setJoined(true);
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   if (!email.trim()) return;
+  //   // TODO: wire this up to your real mailing list (Mailchimp, Brevo, a Google Sheet, etc.)
+  //   setJoined(true);
+  // }
 
   return (
     <main className="ns-frame">
@@ -23,7 +23,7 @@ export default function Home() {
 
       <div className="ns-page">
         <div className="ns-left">
-          <div className="ns-left-inner">
+          <div className="ns-left-inner align-center">
             <Image
               src="/logo.png"
               alt="Nosepin House"
@@ -33,7 +33,7 @@ export default function Home() {
               className="ns-logo"
             />
 
-            <span className="ns-badge ">Launching Soon</span>
+            <span className="ns-badge">Launching Soon</span>
 
             <h1 className="ns-headline">
               Something exquisite
@@ -286,7 +286,8 @@ export default function Home() {
   align-items: center;
   justify-content: center;
 
-  margin: 18px auto 22px;
+  margin: 10px auto 22px;
+ 
   padding: 8px 20px;
 
   border: 1px solid rgba(184, 145, 73, 0.55);
