@@ -1,14 +1,13 @@
 'use client';
 
-
+import { useState } from 'react';
 import Image from 'next/image';
-import { useState, type FormEvent } from 'react';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [joined, setJoined] = useState(false);
 
-  function handleSubmit(e : FormEvent<HTMLFormElement>) {
+  function handleSubmit(e) {
     e.preventDefault();
     if (!email.trim()) return;
     // TODO: wire this up to your real mailing list (Mailchimp, Brevo, a Google Sheet, etc.)
@@ -34,7 +33,7 @@ export default function Home() {
               className="ns-logo"
             />
 
-            <span className="ns-badge">Launching Soon</span>
+            <span className="ns-badge ">Launching Soon</span>
 
             <h1 className="ns-headline">
               Something exquisite
@@ -49,14 +48,12 @@ export default function Home() {
             </div>
 
             <p className="ns-copy">
-              A new jewellery experience is on its way.
-
-We’re carefully preparing a beautiful collection, made for those who appreciate elegance, quality, and timeless style.
-
-
+              Nosepin House is opening its doors online — a home for fine nose
+              pins and jewellery, crafted for those who notice the details.
+              We&apos;re putting the finishing touches on the collection.
             </p>
 
-            {!joined ? (
+            {/* {!joined ? (
               <form className="ns-form" onSubmit={handleSubmit}>
                 <input
                   type="email"
@@ -75,125 +72,33 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
               <p className="ns-success">
                 You&apos;re on the list — we&apos;ll email you the moment we open.
               </p>
-            )}
+            )} */}
 
             <div className="ns-footer">
               <span>Kathmandu, Nepal</span>
               <span className="ns-dot" aria-hidden="true" />
-              <span>nosepin.com</span>
+              <span>nosepinhouse.com</span>
             </div>
           </div>
         </div>
 
-        <div className="ns-right" aria-hidden="true">
-          <div className="ns-texture" />
-          <div className="ns-glow ns-glow-a" />
-          <div className="ns-glow ns-glow-b" />
+        <div className="ns-right">
+          <div className="ns-texture" aria-hidden="true" />
+          <div className="ns-glow ns-glow-a" aria-hidden="true" />
+          <div className="ns-glow ns-glow-b" aria-hidden="true" />
+          {/* <span className="ns-monogram" aria-hidden="true">N</span> */}
 
-          <span className="ns-monogram">N</span>
+          <h2 className="ns-coming">Coming Soon</h2>
 
-          <svg
-            className="ns-jewel"
-            viewBox="0 0 320 400"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="goldFace" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#F8ECC6" />
-                <stop offset="45%" stopColor="#D8B361" />
-                <stop offset="100%" stopColor="#8E6A28" />
-              </linearGradient>
-              <linearGradient id="goldEdge" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#F6E7BE" />
-                <stop offset="100%" stopColor="#A9803C" />
-              </linearGradient>
-              <radialGradient id="rubyFace" cx="35%" cy="30%" r="70%">
-                <stop offset="0%" stopColor="#FF9FB4" />
-                <stop offset="45%" stopColor="#C6274F" />
-                <stop offset="100%" stopColor="#6E0E28" />
-              </radialGradient>
-              <linearGradient id="chainGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#F6E7BE" />
-                <stop offset="100%" stopColor="#B08D46" />
-              </linearGradient>
-            </defs>
+          <Image
+            src="/pendant.png"
+            alt="Nosepin House gold pendant"
+            width={372}
+            height={715}
+            className="ns-pendant"
+          />
 
-            {/* chain / flourish, echoing the swoop in the wordmark */}
-            <path
-              d="M60 20C40 70 96 96 118 118C136 136 132 158 118 172"
-              stroke="url(#chainGrad)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              opacity="0.85"
-            />
-            <path
-              d="M260 20C280 70 224 96 202 118C184 136 188 158 202 172"
-              stroke="url(#chainGrad)"
-              strokeWidth="2"
-              strokeLinecap="round"
-              opacity="0.85"
-            />
-            {[...Array(6)].map((_, i) => (
-              <circle
-                key={`l${i}`}
-                cx={70 + i * 8.5}
-                cy={26 + i * 2}
-                r="2.2"
-                fill="url(#chainGrad)"
-                opacity="0.7"
-              />
-            ))}
-            {[...Array(6)].map((_, i) => (
-              <circle
-                key={`r${i}`}
-                cx={250 - i * 8.5}
-                cy={26 + i * 2}
-                r="2.2"
-                fill="url(#chainGrad)"
-                opacity="0.7"
-              />
-            ))}
-
-            {/* setting */}
-            <path
-              d="M160 158L160 180"
-              stroke="url(#goldEdge)"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-            <path
-              d="M132 178C132 160 188 160 188 178L182 190C176 182 144 182 138 190Z"
-              fill="url(#goldFace)"
-              stroke="#5B3A14"
-              strokeWidth="1.25"
-            />
-
-            {/* faceted pendant gem */}
-            <g transform="translate(160,268)">
-              <polygon
-                points="0,-92 44,-42 44,24 0,96 -44,24 -44,-42"
-                fill="url(#goldFace)"
-                stroke="#5B3A14"
-                strokeWidth="1.5"
-              />
-              <polygon points="0,-92 44,-42 -44,-42" fill="#F8ECC6" opacity="0.6" />
-              <polygon points="0,-64 24,-42 -24,-42" fill="url(#rubyFace)" />
-              <line x1="0" y1="-92" x2="0" y2="96" stroke="#5B3A14" strokeWidth="1" opacity="0.5" />
-              <line x1="-44" y1="-42" x2="44" y2="-42" stroke="#5B3A14" strokeWidth="1" opacity="0.5" />
-              <line x1="-44" y1="24" x2="44" y2="24" stroke="#5B3A14" strokeWidth="1" opacity="0.5" />
-              <line x1="0" y1="-92" x2="-44" y2="-42" stroke="#5B3A14" strokeWidth="0.75" opacity="0.35" />
-              <line x1="0" y1="-92" x2="44" y2="-42" stroke="#5B3A14" strokeWidth="0.75" opacity="0.35" />
-              <line x1="0" y1="96" x2="-44" y2="24" stroke="#5B3A14" strokeWidth="0.75" opacity="0.35" />
-              <line x1="0" y1="96" x2="44" y2="24" stroke="#5B3A14" strokeWidth="0.75" opacity="0.35" />
-              <circle cx="-18" cy="-58" r="5" fill="#FFFFFF" opacity="0.55" />
-            </g>
-
-            {/* small stud, echoing the nose-pin motif in the wordmark */}
-            <circle cx="160" cy="196" r="7" fill="#FBF6EE" stroke="#8E6A28" strokeWidth="2" />
-          </svg>
-
-          <div className="ns-sparkles">
+          <div className="ns-sparkles" aria-hidden="true">
             {sparklePositions.map((pos, i) => (
               <span
                 key={i}
@@ -205,6 +110,44 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
                 }}
               />
             ))}
+          </div>
+
+          <div className="ns-social">
+            <a
+              href="https://www.facebook.com/share/1JrdQvaJVo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Nosepin House on Facebook"
+              className="ns-social-link"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H16.7V3.7c-.3-.04-1.3-.13-2.45-.13-2.4 0-4.05 1.47-4.05 4.16V9.9H7.5V13h2.7v8h3.3z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/nosepinhouse1?stkn=c25sbGtnNmhnZzVo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Nosepin House on Instagram"
+              className="ns-social-link"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.6">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+                <circle cx="12" cy="12" r="4.1" />
+                <circle cx="17.1" cy="6.9" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@nosepinhouse?_r=1&_t=ZS-99rZTM3Xl8p"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Nosepin House on TikTok"
+              className="ns-social-link"
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M16.3 3h-2.9v12.2a2.7 2.7 0 1 1-2.4-2.68V9.5a5.8 5.8 0 1 0 5.3 5.78V9.1a7.6 7.6 0 0 0 4.2 1.27V7.4A4.7 4.7 0 0 1 16.3 3z" />
+              </svg>
+            </a>
           </div>
 
           <p className="ns-tag">Fine Nose Pins &amp; Jewellery</p>
@@ -339,17 +282,43 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
         }
 
         .ns-badge {
-          display: inline-block;
-          font-family: 'Jost', sans-serif;
-          font-size: 0.7rem;
-          font-weight: 500;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--maroon-deep);
-          border: 1px solid var(--gold);
-          padding: 0.4rem 0.9rem;
-          margin-bottom: 1.5rem;
-        }
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 18px auto 22px;
+  padding: 8px 20px;
+
+  border: 1px solid rgba(184, 145, 73, 0.55);
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(184, 145, 73, 0.08),
+    rgba(255, 255, 255, 0.5)
+  );
+
+  color: #a47b32;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 4px 18px rgba(164, 123, 50, 0.08),
+    inset 0 0 12px rgba(255, 255, 255, 0.5);
+
+  position: relative;
+}
+
+/* Small decorative dots */
+.ns-badge::before,
+.ns-badge::after {
+  content: "✦";
+  font-size: 9px;
+  margin: 0 9px;
+  opacity: 0.7;
+}
 
         .ns-headline {
           font-family: 'Cormorant Garamond', serif;
@@ -484,7 +453,22 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          gap: 1.4rem;
+          padding: 3rem 2rem;
           background: linear-gradient(160deg, var(--maroon) 0%, var(--maroon-deep) 65%, #26050f 100%);
+        }
+
+        .ns-coming {
+          position: relative;
+          margin: 0;
+          font-family: 'Cormorant Garamond', serif;
+          font-style: italic;
+          font-weight: 500;
+          font-size: clamp(1.9rem, 3vw, 2.6rem);
+          letter-spacing: 0.02em;
+          text-align: center;
+          color: var(--gold-light);
+          animation: ns-rise 0.9s ease-out both;
         }
 
         .ns-texture {
@@ -528,11 +512,38 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
           user-select: none;
         }
 
-        .ns-jewel {
-          width: 14rem;
+        .ns-pendant {
+          position: relative;
+          width: 10.5rem;
           height: auto;
           animation: ns-rise 1s ease-out 0.15s both, ns-float 6s ease-in-out 1.1s infinite;
           filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.4));
+        }
+
+        .ns-social {
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 0.2rem;
+        }
+
+        .ns-social-link {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.6rem;
+          height: 2.6rem;
+          border: 1px solid rgba(233, 205, 140, 0.55);
+          border-radius: 50%;
+          color: var(--gold-light);
+          transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .ns-social-link:hover {
+          background: var(--gold-light);
+          color: var(--maroon-deep);
+          border-color: var(--gold-light);
         }
 
         .ns-sparkles {
@@ -558,7 +569,7 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
 
         .ns-tag {
           position: relative;
-          margin-top: 2.25rem;
+          margin-top: 0.2rem;
           font-family: 'Jost', sans-serif;
           font-weight: 400;
           letter-spacing: 0.28em;
@@ -632,7 +643,7 @@ We’re carefully preparing a beautiful collection, made for those who appreciat
 
         @media (prefers-reduced-motion: reduce) {
           .ns-left-inner,
-          .ns-jewel,
+          .ns-pendant,
           .ns-sparkle,
           .ns-headline {
             animation: none !important;
