@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+
 import Image from 'next/image';
+import { useState, type FormEvent } from 'react';
 
 export default function Home() {
   const [email, setEmail] = useState('');
   const [joined, setJoined] = useState(false);
 
-  function handleSubmit(e) {
+  function handleSubmit(e : FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email.trim()) return;
     // TODO: wire this up to your real mailing list (Mailchimp, Brevo, a Google Sheet, etc.)
